@@ -37,23 +37,6 @@ module.exports = function(app) {
 
 	});
 
-	// delete a warship
-	app.delete('/api/warships/:warship_id', function(req, res) {
-		Warship.remove({
-			_id : req.params.warship_id
-		}, function(err, warship) {
-			if (err)
-				res.send(err);
-
-			// get and return all the warships after you create another
-			Warship.find(function(err, warships) {
-				if (err)
-					res.send(err)
-				res.json(warships);
-			});
-		});
-	});
-
 	// application -------------------------------------------------------------
 	app.get('*', function(req, res) {
 		res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

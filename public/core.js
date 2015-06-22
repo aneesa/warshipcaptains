@@ -24,16 +24,4 @@ function mainController($scope, $http) {
 				console.log('Error: ' + data);
 			});
 	};
-
-	// delete a warship after checking it
-	$scope.deleteWarship = function(id) {
-		$http.delete('/api/warships/' + id)
-			.success(function(data) {
-				$scope.warships = data;
-			})
-			.error(function(data) {
-				console.log('Error: ' + data);
-			});
-	};
-
 }
