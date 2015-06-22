@@ -1,0 +1,73 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="warship">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Warship</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#warship-list 			{ margin-bottom:30px; }
+		#warship-form 	 		{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL WARSHIPS WITH INITIALIZE FUNCTION -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND WARSHIP COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Warships <span class="label label-info">{{ warships.length }}</span></h1>
+		</div>
+
+		<!-- WARSHIP LIST -->
+		<div id="warship-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE WARSHIPS IN $scope.warships -->
+				<div class="checkbox" ng-repeat="warship in warships">
+					<label>
+						<input type="checkbox" ng-click="deleteWarship(warship._id)"> {{ warship.name }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE WARSHIP -->
+		<div id="warship-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="i.e USS Enterprise" ng-model="formData.text">
+					</div>
+
+					<!-- createWarship() WILL CREATE NEW WARSHIP -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createWarship()">Add</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="text-center text-muted">
+			<p>Originally a demo by <a href="http://scotch.io">Scotch</a>.</p>
+			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+		</div>
+
+	</div>
+
+</body>
+</html>
