@@ -90,13 +90,17 @@ module.exports = function(app) {
 	app.get('/api/shipcaptains', function(req, res) {
 
 		// use mongoose to get all ship captains in the database
-		ShipCaptain.find(function(err, shipcaptains) {
+//		ShipCaptain.find(function(err, shipcaptains) {
+		ShipCaptain.find({})
+			.populate('captain')
+			.populate('warship')
+			.exec(function(err, shipcaptains) {
 
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
-			if (err)
-				res.send(err)
+				// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+				if (err)
+					res.send(err)
 
-			res.json(shipcaptains); // return all captains in JSON format
+				res.json(shipcaptains); // return all captains in JSON format
 		});
 	});
 
@@ -105,8 +109,8 @@ module.exports = function(app) {
 
 		// create a ship captain, information comes from AJAX request from Angular
 		ShipCaptain.create({
-			captain : req.body.selectedCaptain,
-			warship : req.body.selectedWarship
+			captain : req.body.selectedCaptain._id,
+			warship : req.body.selectedWarship._id
 		}, function(err, shipcaptain) {
 			if (err)
 				res.send(err);

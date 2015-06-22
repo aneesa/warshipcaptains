@@ -63,8 +63,6 @@ function shipCaptainsController($scope, $http) {
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});
-		
-	$scope.formData.selectedCaptain = null;
 	
 	$http.get('/api/warships')
 		.success(function(data) {
@@ -73,8 +71,6 @@ function shipCaptainsController($scope, $http) {
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});
-	
-	$scope.formData.selectedWarship = null;
 
 	// when landing on the page, get all ship captains and show them
 	$http.get('/api/shipcaptains')

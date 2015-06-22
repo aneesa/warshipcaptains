@@ -9,8 +9,14 @@ var mongoose = require('mongoose');
 // Schema
 // _id will be automatically created
 var shipCaptainSchema = new mongoose.Schema({
-	captain: String,
-	warship: String
+	captain: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Captain'
+	},
+	warship: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Warship'
+	}
 });
 
 // model
