@@ -1,0 +1,72 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="warshipCaptains">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Ship Captains</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#a-list 				{ margin-bottom:30px; }
+		#a-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL SHIP CAPTAINS WITH INITIALIZE FUNCTION -->
+<body ng-controller="shipCaptainsController">
+	<div class="container">
+
+		<!-- HEADER AND SHIP CAPTAIN COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Ship Captains <span class="label label-info">{{ shipcaptains.length }}</span></h1>
+		</div>
+
+		<!-- SHIP CAPTAIN LIST -->
+		<div id="a-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE SHIP CAPTAINS IN $scope.shipcaptains -->
+				<div class="checkbox" ng-repeat="shipcaptain in shipcaptains">
+					<label>
+						{{ shipcaptain.captain }} : {{ shipcaptain.warship }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE CAPTAIN -->
+		<div id="a-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+						<select ng-model="formData.selectedCaptain" ng-options="captain as captain.name for captain in captains"></select>
+						<select ng-model="formData.selectedWarship" ng-options="warship as warship.name for warship in warships"></select>
+					</div>
+
+					<!-- createShipCaptain() WILL CREATE NEW SHIP CAPTAIN -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createShipCaptain()">Add</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="text-center text-muted">
+			<p>Originally a demo by <a href="http://scotch.io">Scotch</a>.</p>
+			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+		</div>
+
+	</div>
+
+</body>
+</html>

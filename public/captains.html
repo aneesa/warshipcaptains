@@ -1,0 +1,78 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="warshipCaptains">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Captains</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#a-list 				{ margin-bottom:30px; }
+		#a-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL CAPTAINS WITH INITIALIZE FUNCTION -->
+<body ng-controller="captainsController">
+	<div class="container">
+
+		<!-- HEADER AND CAPTAIN COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Captains <span class="label label-info">{{ captains.length }}</span></h1>
+		</div>
+
+		<!-- CAPTAIN LIST -->
+		<div id="a-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE CAPTAINS IN $scope.captains -->
+				<div class="checkbox" ng-repeat="captain in captains">
+					<label>
+						{{ captain.name }} : {{ captain.age }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE CAPTAIN -->
+		<div id="a-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.name IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="i.e James Kirk" ng-model="formData.name">
+					</div>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.age IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="i.e 25" ng-model="formData.age">
+					</div>
+
+					<!-- createCaptain() WILL CREATE NEW CAPTAIN -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createCaptain()">Add</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="text-center text-muted">
+			<p>Originally a demo by <a href="http://scotch.io">Scotch</a>.</p>
+			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -1,4 +1,6 @@
 var Warship = require('./models/warship');
+var Captain = require('./models/captain');
+var ShipCaptain = require('./models/shipcaptain');
 
 module.exports = function(app) {
 
@@ -22,7 +24,7 @@ module.exports = function(app) {
 
 		// create a warship, information comes from AJAX request from Angular
 		Warship.create({
-			name : req.body.text
+			name : req.body.name
 		}, function(err, warship) {
 			if (err)
 				res.send(err);
@@ -38,7 +40,89 @@ module.exports = function(app) {
 	});
 
 	// application -------------------------------------------------------------
-	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+	app.get('/warships', function(req, res) {
+		res.sendfile('./public/warships.html'); // load the single view file (angular will handle the page changes on the front-end)
+	});
+	
+	// api ---------------------------------------------------------------------
+	// get all captains
+	app.get('/api/captains', function(req, res) {
+
+		// use mongoose to get all captains in the database
+		Captain.find(function(err, captains) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(captains); // return all captains in JSON format
+		});
+	});
+
+	// create captain and send back all captains after creation
+	app.post('/api/captains', function(req, res) {
+
+		// create a captain, information comes from AJAX request from Angular
+		Captain.create({
+			name : req.body.name,
+			age : req.body.age
+		}, function(err, captain) {
+			if (err)
+				res.send(err);
+
+			// get and return all the captains after you create another
+			Captain.find(function(err, captains) {
+				if (err)
+					res.send(err)
+				res.json(captains);
+			});
+		});
+
+	});
+
+	// application -------------------------------------------------------------
+	app.get('/captains', function(req, res) {
+		res.sendfile('./public/captains.html'); // load the single view file (angular will handle the page changes on the front-end)
+	});
+
+	// api ---------------------------------------------------------------------
+	// get all ship captains
+	app.get('/api/shipcaptains', function(req, res) {
+
+		// use mongoose to get all ship captains in the database
+		ShipCaptain.find(function(err, shipcaptains) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(shipcaptains); // return all captains in JSON format
+		});
+	});
+
+	// create ship captain and send back all ship captains after creation
+	app.post('/api/shipcaptains', function(req, res) {
+
+		// create a ship captain, information comes from AJAX request from Angular
+		ShipCaptain.create({
+			captain : req.body.selectedCaptain,
+			warship : req.body.selectedWarship
+		}, function(err, shipcaptain) {
+			if (err)
+				res.send(err);
+
+			// get and return all the ship captains after you create another
+			ShipCaptain.find(function(err, shipcaptains) {
+				if (err)
+					res.send(err)
+				res.json(shipcaptains);
+			});
+		});
+
+	});
+
+	// application -------------------------------------------------------------
+	app.get('/shipcaptains', function(req, res) {
+		res.sendfile('./public/shipcaptains.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});
 };
