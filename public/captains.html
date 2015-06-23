@@ -49,20 +49,22 @@
 		<!-- FORM TO CREATE CAPTAIN -->
 		<div id="a-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
+				<form name="captainForm" ng-submit="createCaptain(captainForm.$valid)" novalidate>
 					<div class="form-group">
-
 						<!-- BIND THIS VALUE TO formData.name IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="i.e James Kirk" ng-model="formData.name">
+						<input type="text" name="name" required class="form-control input-lg text-center" placeholder="i.e James Kirk" ng-model="formData.name">
 					</div>
 					<div class="form-group">
-
 						<!-- BIND THIS VALUE TO formData.age IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="i.e 25" ng-model="formData.age">
+						<input type="number" name="age" required class="form-control input-lg text-center" placeholder="i.e 25" ng-model="formData.age">
+					</div>
+					
+					<div class="checkbox">
+						<p ng-show="captainForm.name.$invalid" class="help-block">Please enter the captain's name.</p>
+						<p ng-show="captainForm.age.$invalid" class="help-block">Please enter the captain's age in numbers.</p>
 					</div>
 
-					<!-- createCaptain() WILL CREATE NEW CAPTAIN -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createCaptain()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-disabled="captainForm.$invalid">Add</button>
 				</form>
 			</div>
 		</div>

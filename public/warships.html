@@ -49,15 +49,17 @@
 		<!-- FORM TO CREATE WARSHIP -->
 		<div id="a-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
+				<form name="warshipForm" ng-submit="createWarship(warshipForm.$valid)" novalidate>
 					<div class="form-group">
-
 						<!-- BIND THIS VALUE TO formData.name IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="i.e USS Enterprise" ng-model="formData.name">
+						<input type="text" name="name" required class="form-control input-lg text-center" placeholder="i.e USS Enterprise" ng-model="formData.name">
+					</div>
+					
+					<div class="checkbox">
+						<p ng-show="warshipForm.name.$invalid" class="help-block">Please enter the warship's name.</p>
 					</div>
 
-					<!-- createWarship() WILL CREATE NEW WARSHIP -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createWarship()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-disabled="warshipForm.$invalid">Add</button>
 				</form>
 			</div>
 		</div>

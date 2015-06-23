@@ -13,7 +13,7 @@ module.exports = function(app) {
 
 			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 			if (err)
-				res.send(err)
+				return res.send(err)
 
 			res.json(warships); // return all warships in JSON format
 		});
@@ -27,12 +27,13 @@ module.exports = function(app) {
 			name : req.body.name
 		}, function(err, warship) {
 			if (err)
-				res.send(err);
+				return res.send(err);
 
 			// get and return all the warships after you create another
 			Warship.find(function(err, warships) {
 				if (err)
-					res.send(err)
+					return res.send(err)
+					
 				res.json(warships);
 			});
 		});
@@ -53,7 +54,7 @@ module.exports = function(app) {
 
 			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 			if (err)
-				res.send(err)
+				return res.send(err)
 
 			res.json(captains); // return all captains in JSON format
 		});
@@ -68,12 +69,13 @@ module.exports = function(app) {
 			age : req.body.age
 		}, function(err, captain) {
 			if (err)
-				res.send(err);
+				return res.send(err);
 
 			// get and return all the captains after you create another
 			Captain.find(function(err, captains) {
 				if (err)
-					res.send(err)
+					return res.send(err)
+					
 				res.json(captains);
 			});
 		});
@@ -90,15 +92,36 @@ module.exports = function(app) {
 	app.get('/api/shipcaptains', function(req, res) {
 
 		// use mongoose to get all ship captains in the database
-//		ShipCaptain.find(function(err, shipcaptains) {
-		ShipCaptain.find({})
+		ShipCaptain.find()
 			.populate('captain')
 			.populate('warship')
 			.exec(function(err, shipcaptains) {
 
 				// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 				if (err)
-					res.send(err)
+					return res.send(err)
+
+				res.json(shipcaptains); // return all captains in JSON format
+		});
+	});
+	
+	// get all ship captain by id
+	app.get('/api/shipcaptains/:captain_id', function(req, res) {
+
+		// use mongoose to get all ship captains in the database
+		// TODO: could not get a match while populating
+		ShipCaptain.find()
+			.populate('captain')
+			.populate('warship')
+			.exec(function(err, shipcaptains) {
+
+				// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+				if (err)
+					return res.send(err)
+				
+				shipcaptains = shipcaptains.filter(function (shipcaptain) {
+					return shipcaptain.captain._id == req.params.captain_id;
+				});
 
 				res.json(shipcaptains); // return all captains in JSON format
 		});
@@ -113,12 +136,13 @@ module.exports = function(app) {
 			warship : req.body.selectedWarship._id
 		}, function(err, shipcaptain) {
 			if (err)
-				res.send(err);
+				return res.send(err);
 
 			// get and return all the ship captains after you create another
 			ShipCaptain.find(function(err, shipcaptains) {
 				if (err)
-					res.send(err)
+					return res.send(err)
+					
 				res.json(shipcaptains);
 			});
 		});
