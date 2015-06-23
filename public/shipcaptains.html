@@ -51,14 +51,14 @@
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form name="shipcaptainForm" ng-submit="createShipCaptain(shipcaptainForm.$valid)" novalidate>
 					<div class="form-group">
-						<select name="captain" required ng-model="formData.selectedCaptain" ng-options="captain as captain.name for captain in captains"></select>
+						<select name="captain" required is-available ng-model="formData.selectedCaptain" ng-options="captain as captain.name for captain in captains"></select>
 						<select name="warship" required ng-model="formData.selectedWarship" ng-options="warship as warship.name for warship in warships"></select>
 					</div>
 					
 					<div class="checkbox">
-						<p ng-show="shipcaptainForm.captain.$invalid" class="help-block">Please select a captain.</p>
+						<p ng-show="shipcaptainForm.captain.$invalid && shipcaptainForm.captain.$pristine" class="help-block">Please select a captain.</p>
 						<p ng-show="shipcaptainForm.warship.$invalid" class="help-block">Please select a warship.</p>
-						<p> {{ validation }} </p>
+						<p ng-show="shipcaptainForm.captain.$error.notavailable" class="help-block">{{ validation }}</p>
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-lg" ng-disabled="shipcaptainForm.$invalid">Add</button>

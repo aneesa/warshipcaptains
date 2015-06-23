@@ -139,12 +139,17 @@ module.exports = function(app) {
 				return res.send(err);
 
 			// get and return all the ship captains after you create another
-			ShipCaptain.find(function(err, shipcaptains) {
-				if (err)
-					return res.send(err)
-					
-				res.json(shipcaptains);
-			});
+			ShipCaptain.find()
+				.populate('captain')
+				.populate('warship')
+				.exec(function(err, shipcaptains) {
+
+					// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+					if (err)
+						return res.send(err)
+
+					res.json(shipcaptains); // return all captains in JSON format
+				});
 		});
 
 	});
