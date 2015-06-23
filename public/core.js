@@ -68,13 +68,20 @@ warshipCaptains.directive('isAvailable', ['$http', function($http) {
 		require: 'ngModel',
 		link: function(scope, element, attrs, ctrl) {
 		  scope.$watch(attrs.ngModel, function(value) {
-			$http.get('/api/shipcaptains/' + value._id)
+			var field = attrs.isAvailable;
+			$http.get('/api/shipcaptains/'+field+'/' + value._id)
 				.success(function(data) {
 					if(data.length === 0) {
 						ctrl.$setValidity('notavailable', true);
 					}else {
-						scope.validation = 'Captain '+data[0].captain.name+
-							' has been assigned to Warship '+data[0].warship.name;
+						if (field === 'captain') {
+							scope.validation = 'Captain '+data[0].captain.name+
+								' has been assigned to Warship '+data[0].warship.name+'.';
+						}
+						else if (field === 'warship') {
+							scope.validation = 'Warship '+data[0].warship.name+
+								' has been assigned to Captain '+data[0].captain.name+'.';
+						}						
 						ctrl.$setValidity('notavailable', false);
 					}
 				})

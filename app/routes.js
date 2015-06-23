@@ -105,8 +105,8 @@ module.exports = function(app) {
 		});
 	});
 	
-	// get all ship captain by id
-	app.get('/api/shipcaptains/:captain_id', function(req, res) {
+	// get all ship captain by captain id
+	app.get('/api/shipcaptains/captain/:captain_id', function(req, res) {
 
 		// use mongoose to get all ship captains in the database
 		// TODO: could not get a match while populating
@@ -121,6 +121,28 @@ module.exports = function(app) {
 				
 				shipcaptains = shipcaptains.filter(function (shipcaptain) {
 					return shipcaptain.captain._id == req.params.captain_id;
+				});
+
+				res.json(shipcaptains); // return all captains in JSON format
+		});
+	});
+	
+	// get all ship captain by warship id
+	app.get('/api/shipcaptains/warship/:warship_id', function(req, res) {
+
+		// use mongoose to get all ship captains in the database
+		// TODO: could not get a match while populating
+		ShipCaptain.find()
+			.populate('captain')
+			.populate('warship')
+			.exec(function(err, shipcaptains) {
+
+				// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+				if (err)
+					return res.send(err)
+				
+				shipcaptains = shipcaptains.filter(function (shipcaptain) {
+					return shipcaptain.warship._id == req.params.warship_id;
 				});
 
 				res.json(shipcaptains); // return all captains in JSON format
