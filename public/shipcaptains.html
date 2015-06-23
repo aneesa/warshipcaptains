@@ -51,14 +51,17 @@
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form name="shipcaptainForm" ng-submit="createShipCaptain(shipcaptainForm.$valid)" novalidate>
 					<div class="form-group">
-						<select name="captain" required is-available="captain" ng-model="formData.selectedCaptain" ng-options="captain as captain.name for captain in captains"></select>
-						<select name="warship" required is-available="warship" ng-model="formData.selectedWarship" ng-options="warship as warship.name for warship in warships"></select>
+						<select name="captain" required is-available="captain" class="form-control input-lg text-center" ng-model="formData.selectedCaptain" ng-options="captain as captain.name for captain in captains"></select>
+					</div>
+					<div class="form-group">
+						<select name="warship" required is-available="warship" class="form-control input-lg text-center" ng-model="formData.selectedWarship" ng-options="warship as warship.name for warship in warships" ></select>
 					</div>
 					
-					<div class="checkbox">
+					<div class="checkbox has-error">
 						<p ng-show="shipcaptainForm.captain.$invalid" class="help-block">Please select a captain.</p>
 						<p ng-show="shipcaptainForm.warship.$invalid" class="help-block">Please select a warship.</p>
-						<p ng-show="shipcaptainForm.captain.$error.notavailable || shipcaptainForm.warship.$error.notavailable" class="help-block">{{ validation }}</p>
+						<p ng-show="shipcaptainForm.captain.$error.notavailable" class="help-block">{{ captainvalidation }}</p>
+						<p ng-show="shipcaptainForm.warship.$error.notavailable" class="help-block">{{ warshipvalidation }}</p>
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-lg" ng-disabled="shipcaptainForm.$invalid">Add</button>
@@ -68,7 +71,6 @@
 
 		<div class="text-center text-muted">
 			<p>Originally a demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
 		</div>
 
 	</div>

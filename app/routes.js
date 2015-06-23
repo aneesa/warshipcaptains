@@ -39,11 +39,6 @@ module.exports = function(app) {
 		});
 
 	});
-
-	// application -------------------------------------------------------------
-	app.get('/warships', function(req, res) {
-		res.sendfile('./public/warships.html'); // load the single view file (angular will handle the page changes on the front-end)
-	});
 	
 	// api ---------------------------------------------------------------------
 	// get all captains
@@ -80,11 +75,6 @@ module.exports = function(app) {
 			});
 		});
 
-	});
-
-	// application -------------------------------------------------------------
-	app.get('/captains', function(req, res) {
-		res.sendfile('./public/captains.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});
 
 	// api ---------------------------------------------------------------------
@@ -177,6 +167,14 @@ module.exports = function(app) {
 	});
 
 	// application -------------------------------------------------------------
+	app.get('/warships', function(req, res) {
+		res.sendfile('./public/warships.html'); // load the single view file (angular will handle the page changes on the front-end)
+	});
+	
+	app.get('/captains', function(req, res) {
+		res.sendfile('./public/captains.html'); // load the single view file (angular will handle the page changes on the front-end)
+	});
+
 	app.get('/shipcaptains', function(req, res) {
 		res.sendfile('./public/shipcaptains.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});

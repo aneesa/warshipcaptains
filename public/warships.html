@@ -51,11 +51,12 @@
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form name="warshipForm" ng-submit="createWarship(warshipForm.$valid)" novalidate>
 					<div class="form-group">
+						
 						<!-- BIND THIS VALUE TO formData.name IN ANGULAR -->
 						<input type="text" name="name" required class="form-control input-lg text-center" placeholder="i.e USS Enterprise" ng-model="formData.name">
 					</div>
 					
-					<div class="checkbox">
+					<div class="checkbox has-error">
 						<p ng-show="warshipForm.name.$invalid" class="help-block">Please enter the warship's name.</p>
 					</div>
 
@@ -66,7 +67,6 @@
 
 		<div class="text-center text-muted">
 			<p>Originally a demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
 		</div>
 
 	</div>
