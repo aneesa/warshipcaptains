@@ -1,6 +1,7 @@
 # Node Warship Captains App
 
-This app is built for learning purposes. There are 3 pages: 
+This app is built for learning purposes. There are 3 pages:
+
 - first page contains a form to create a new Warship and displays all the Warships created.
 - second page contains a form to create a new Captain and displays all the Captains created.
 - third page contains a form to assign a Captain to a Warship and displays all the assignments.
