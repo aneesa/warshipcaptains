@@ -1,24 +1,31 @@
-# Node Todo App
+# Node Warship Captains App
 
-A Node app built with MongoDB and Angular. For demonstration purposes and a tutorial.
+This app is built for learning purposes. There are 3 pages: 
+- first page contains a form to create a new Warship and displays all the Warships created.
+- second page contains a form to create a new Captain and displays all the Captains created.
+- third page contains a form to assign a Captain to a Warship and displays all the assignments.
 
-Node provides the RESTful API. Angular provides the frontend and accesses the API. MongoDB stores like a hoarder.
+This is a node app build using MongoDB and Angular.
+
+- Node provides the RESTful API. 
+- Angular provides the frontend and accesses the API. 
+- MongoDB stores the data.
 
 ## Requirements
 
 - [Node and npm](http://nodejs.org)
+- [MongoDB](https://www.mongodb.org/)
 
 ## Installation
 
-1. Clone the repository: `git clone git@github.com:scotch-io/node-todo`
+1. Clone the repository: `git clone https://ailuromaniac@bitbucket.org/ailuromaniac/warshipcaptains.git`
 2. Install the application: `npm install`
-3. Start the server: `node server.js`
-4. View in browser at `http://localhost:8080`
+3. Start the local DB: `<MongoDB-bin>/mongod.exe --config <application-path>/config/mongo.config`
+4. Start the server: `node server.js`
+5. View in browser at `http://localhost:8080/warshipcaptains`
 
-## Tutorial Series
+## Base Source Codes
 
-This repo corresponds to the [Node Todo Tutorial Series](http://scotch.io/series/node-and-angular-to-do-app) on [scotch.io](http://scotch.io)
+This app is built based on source codes from [Scotch](http://scotch.io)'s tutorial website. 
 
-Happy Todo-ing!
-
-![Todo-aholic](http://i.imgur.com/ikyqgrn.png)
+The basic framework is based on this tutorial, [Creating a Single Page Todo App with Node and Angular](https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular).

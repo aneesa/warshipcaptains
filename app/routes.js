@@ -166,7 +166,11 @@ module.exports = function(app) {
 
 	});
 
-	// application -------------------------------------------------------------
+	// application -------------------------------------------------------------	
+	app.get('/warshipcaptains', function(req, res) {
+		res.sendfile('./public/warships.html'); // load the single view file (angular will handle the page changes on the front-end)
+	});
+	
 	app.get('/warships', function(req, res) {
 		res.sendfile('./public/warships.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});

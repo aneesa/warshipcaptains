@@ -25,8 +25,25 @@
 </head>
 <!-- SET THE CONTROLLER AND GET ALL SHIP CAPTAINS WITH INITIALIZE FUNCTION -->
 <body ng-controller="shipCaptainsController">
-	<div class="container">
 
+	<!-- HEADER AND NAVBAR -->
+	<header>
+		<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/warshipcaptains">Warship Captains</a>
+			</div>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="warships"> Warships</a></li>
+				<li><a href="captains"> Captains</a></li>
+				<li><a href="shipcaptains"> Ship Captains</a></li>
+			</ul>
+		</div>
+		</nav>
+    </header>
+	
+	<div class="container">
 		<!-- HEADER AND SHIP CAPTAIN COUNT -->
 		<div class="jumbotron text-center">
 			<h1>Ship Captains <span class="label label-info">{{ shipcaptains.length }}</span></h1>
@@ -70,7 +87,7 @@
 		</div>
 
 		<div class="text-center text-muted">
-			<p>Originally a demo by <a href="http://scotch.io">Scotch</a>.</p>
+			<p>Base source codes from <a href="http://scotch.io">Scotch</a>.</p>
 		</div>
 
 	</div>
