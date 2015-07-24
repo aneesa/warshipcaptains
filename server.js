@@ -11,7 +11,7 @@ var bodyParser = require('body-parser'); 	// pull information from HTML POST (ex
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 // configuration ===============================================================
-var database = 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/warshipcaptains';	// TODO externalized this in database.js
+var database = process.env.OPENSHIFT_MONGODB_DB_URL + 'warshipcaptains';	// TODO externalized this in database.js
 //database = database + database.dbname;
 mongoose.connect(database); 	// connect to mongoDB database on modulus.io
 console.log("Connecting mongodb to " + database);
