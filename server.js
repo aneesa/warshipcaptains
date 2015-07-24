@@ -11,13 +11,10 @@ var bodyParser = require('body-parser'); 	// pull information from HTML POST (ex
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 // configuration ===============================================================
-mongodb_connection_string = database.url;
-//take advantage of openshift env vars when available:
-if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'warshipcaptains';
-}
-mongoose.connect(mongodb_connection_string); 	// connect to mongoDB database on modulus.io
-console.log("Connecting to " + mongodb_connection_string);
+var database = database.url || database.localurl;
+database = database + database.dbname;
+mongoose.connect(database); 	// connect to mongoDB database on modulus.io
+console.log("Connecting mongodb to " + database);
 
 app.use(express.static(__dirname + '/public')); 				// set the static files location /public/img will be /img for users
 app.use(morgan('dev')); 										// log every request to the console
