@@ -25,6 +25,10 @@ This is a node app build using MongoDB and Angular.
 4. Start the server: `node server.js`
 5. View in browser at `http://localhost:8080/warshipcaptains`
 
+## Future Things To Do
+
+- Fix Angular routing to use ng-route and ng-view
+
 ## Base Source Codes
 
 This app is built based on source codes from [Scotch](http://scotch.io)'s tutorial website. 
