@@ -3,7 +3,7 @@ var express  = require('express');
 var app      = express(); 											// create our app w/ express
 var mongoose = require('mongoose'); 								// mongoose for mongodb
 var port  	 = process.env.OPENSHIFT_NODEJS_PORT || 8080; 			// set the port
-var address  =  process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1"; 	// Listening to localhost if you run locally
+var address  =  process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'; 	// Listening to localhost if you run locally
 var database = require('./config/database'); 						// load the database config
 
 var morgan = require('morgan'); 		// log requests to the console (express4)
@@ -11,7 +11,13 @@ var bodyParser = require('body-parser'); 	// pull information from HTML POST (ex
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 // configuration ===============================================================
-mongoose.connect(database.url); 	// connect to mongoDB database on modulus.io
+mongodb_connection_string = database.url;
+//take advantage of openshift env vars when available:
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'warshipcaptains';
+}
+mongoose.connect(mongodb_connection_string); 	// connect to mongoDB database on modulus.io
+console.log("Connecting to " + mongodb_connection_string);
 
 app.use(express.static(__dirname + '/public')); 				// set the static files location /public/img will be /img for users
 app.use(morgan('dev')); 										// log every request to the console
@@ -25,4 +31,4 @@ require('./app/routes.js')(app);
 
 // listen (start app with node server.js) ======================================
 app.listen(port,address);
-console.log("App listening on port " + port);
+console.log("Listening on " + address + ", server_port " + port);
