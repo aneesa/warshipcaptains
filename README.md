@@ -1,6 +1,6 @@
 # Node Warship Captains App
 
-[http://warshipcaptains-warshipcaptains.rhcloud.com/warshipcaptains](http://warshipcaptains-warshipcaptains.rhcloud.com/warshipcaptains)
+Demo : http://warshipcaptains-ailuromaniac.rhcloud.com/warshipcaptains
 
 This app is built for learning purposes. There are 3 pages:
 
@@ -19,19 +19,22 @@ This is a node app build using MongoDB and Angular.
 - [Node and npm](http://nodejs.org)
 - [MongoDB](https://www.mongodb.org/)
 
-## Installation
+## Local Installation
 
 1. Clone the repository: `git clone https://ailuromaniac@bitbucket.org/ailuromaniac/warshipcaptains.git`
-2. Install the application: `npm install`
-3. Start the local DB: `<MongoDB-bin>/mongod.exe --config <application-path>/config/mongo.config`
-4. Start the server: `node server.js`
-5. View in browser at `http://localhost:8080/warshipcaptains`
+2. Navigate to the config folder: `cd warshipcaptains/config`
+3. Update dbpath and logpath in mongo.config to point to the data and mongodb respectively
+4. Navigate to the application directory: `cd ..`
+5. Install the application: `npm install`
+6. Start the local DB: `<MongoDB-bin>/mongod.exe --config <parent-path>/warshipcaptains/config/mongo.config`
+7. Start the server: `node server.js`
+8. View in browser at `http://localhost:8080/warshipcaptains`
 
 ## Future Things To Do
 
 - Fix Angular routing to use ng-route and ng-view
 
-## Base Source Codes
+## References
 
 This app is built based on source codes from [Scotch](http://scotch.io)'s tutorial website. 
 
